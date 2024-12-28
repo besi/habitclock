@@ -17,10 +17,10 @@ def white():
     np.write()
 
 
-def seconds():
-    for i in range(pixelCount):
+def seconds(seconds = 60):
+    for i in range(seconds%60):
         np.fill((0,0,0))
-        np[i] = (155,15,155)
+        np[i] = (255,255,255)
         np.write()
         time.sleep(1)
         
@@ -47,7 +47,7 @@ def rainbow():
         #time.sleep_ms(5)
 
 white()
-seconds()
+seconds(15)
 time.sleep(2)
 rainbow()
 
