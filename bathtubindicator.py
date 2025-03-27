@@ -88,7 +88,8 @@ try:
   print("connecting to MQTT")
   client = connect_and_subscribe()
 except OSError as e:
-  print("ERRRRRROOOOOOOR")
+  print("ERRRRRROOOOOOOR reconnect")
+  client = connect_and_subscribe()
 
 while True:
     client.check_msg()
