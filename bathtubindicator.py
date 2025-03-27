@@ -58,6 +58,10 @@ def setTemperature(temp, increment = 2):
     for i in range(index, index + increment):
         np[i] = (red,green,blue)
 
+    # Clear upcoming pixels
+    for i in range(index+increment,index+increment+10):
+      np[i%pixelCount] = (0,0,0); np.write()
+    
     np.write()
     index = (index + increment) % pixelCount
 
