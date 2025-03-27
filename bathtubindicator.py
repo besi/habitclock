@@ -73,23 +73,25 @@ def sub_cb(topic, msg):
         print(f"Temeperature {t:.2f}")
         setTemperature(t)
     except OSError as e:
-        print(f"Error parsing the JSON {json.loads(data)}")x
+        print(f"Failed parsing JSON: {json.loads(data)}")
 
 def connect_and_subscribe():
-  global client_id, mqtt_server, topic_sub, mqtt_port, mqtt_user, mqtt_password,sub_cb
-  client = MQTTClient(client_id, mqtt_server, mqtt_port, mqtt_user, mqtt_password,keepalive=keepalive)
-  client.set_callback(sub_cb)
-  client.connect()
-  client.subscribe(topic_sub)
-  print('Connected to %s MQTT broker, subscribed to %s topic' % (mqtt_server, topic_sub))
-  return client
+    global client_id, mqtt_server, topic_sub, mqtt_port, mqtt_user, mqtt_password,sub_cb
+    client = MQTTClient(client_id, mqtt_server, mqtt_port, mqtt_user, mqtt_password,keepalive=keepalive)
+    client.set_callback(sub_cb)
+    client.connect()
+    client.subscribe(topic_sub)
+    print('Connected to %s MQTT broker, subscribed to %s topic' % (mqtt_server, topic_sub))
+    return client
+
 client = None
+
 try:
-  print("connecting to MQTT")
-  client = connect_and_subscribe()
+    print("connecting to MQTT")
+    client = connect_and_subscribe()
 except OSError as e:
-  print("ERRRRRROOOOOOOR reconnect")
-  client = connect_and_subscribe()
+    print("ERRRRRROOOOOOOR reconnect")
+    client = connect_and_subscribe()
 
 while True:
     client.check_msg()
