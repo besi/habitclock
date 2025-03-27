@@ -66,7 +66,7 @@ def sub_cb(topic, msg):
     data = msg.decode('utf-8')
     try:
         t = json.loads(data)['temp']    
-        print("Temeperature %f" % t)
+        print(f"Temeperature {t:.2f}")
         setTemperature(t)
     except OSError as e:
         print(f"Error parsing the JSON {json.loads(data)}")x
