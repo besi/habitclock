@@ -39,7 +39,7 @@ pixelCount = 60
 np = neopixel.NeoPixel(machine.Pin(0), pixelCount)
 np.fill((0,0,0));np.write()
 keepalive = 65535
-ideal = 43
+ideal = 42
 index = 0
 
 
